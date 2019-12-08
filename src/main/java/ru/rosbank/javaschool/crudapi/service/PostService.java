@@ -3,11 +3,13 @@ package ru.rosbank.javaschool.crudapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import ru.rosbank.javaschool.crudapi.dto.PostResponseDto;
 import ru.rosbank.javaschool.crudapi.dto.PostSaveRequestDto;
 import ru.rosbank.javaschool.crudapi.entity.PostEntity;
 import ru.rosbank.javaschool.crudapi.exception.BadRequestException;
 import ru.rosbank.javaschool.crudapi.repository.PostRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,7 +66,7 @@ public class PostService {
   }
 
   public int getCountOfNewPosts(int firstPostId) {
-    Optional<PostEntity> firstPost = repository.findById(firstPostId);;
+    Optional<PostEntity> firstPost = repository.findById(firstPostId);
     List<Optional<PostEntity>> collect = repository.findAll().stream()
             .sorted((o1, o2) -> -(o1.getId() - o2.getId()))
             .map(Optional::of)

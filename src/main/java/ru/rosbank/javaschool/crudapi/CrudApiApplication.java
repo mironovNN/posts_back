@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.rosbank.javaschool.crudapi.entity.PostEntity;
 import ru.rosbank.javaschool.crudapi.repository.PostRepository;
+
 import java.util.List;
 
 @SpringBootApplication
