@@ -1,4 +1,4 @@
-package ru.rosbank.javaschool.crudapi;
+package ru.rosbank.javaschool.crudapi.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

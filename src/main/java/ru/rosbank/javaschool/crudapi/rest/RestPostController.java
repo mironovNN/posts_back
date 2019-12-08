@@ -17,11 +17,24 @@ public class RestPostController {
   private final PostService service;
   private final Logger logger = LoggerFactory.getLogger(RestPostController.class);
 
-  @GetMapping
-  public List<PostResponseDto> getAll() {
+  @GetMapping(params = {"last","step"})
+  public List<PostResponseDto> getSomePosts(@RequestParam("last") int lastPost, @RequestParam("step") int step) {
     logger.info(Thread.currentThread().getName());
-    return service.getAll();
+    return service.getSomePosts(lastPost,step);
   }
+
+  @GetMapping(params = {"first"})
+  public int getCountOfNewPosts(@RequestParam("first") int firstPostId) {
+    logger.info(Thread.currentThread().getName());
+    return service.getCountOfNewPosts(firstPostId);
+  }
+
+  @GetMapping
+  public int getFirstPostId() {
+    logger.info(Thread.currentThread().getName());
+    return service.getFirstId();
+  }
+
 
   @GetMapping(params = "q")
   public List<PostResponseDto> searchByContent(@RequestParam String q) {
