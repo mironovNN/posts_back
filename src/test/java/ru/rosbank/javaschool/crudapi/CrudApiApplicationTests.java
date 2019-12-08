@@ -5,8 +5,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class CrudApiApplicationTests {
-
-  @Test
-  void contextLoads() {
-  }
+//
+//  @Test
+//  void contextLoads() {
+//  }
 }
