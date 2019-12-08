@@ -41,7 +41,6 @@ public class FileService {
   public UploadResponseDto save(MultipartFile multipartFile) {
     String extension;
     String contentType = multipartFile.getContentType();
-    // Apache Tika
     if ("image/jpeg".equals(contentType)) {
       extension = ".jpg";
     } else if ("image/png".equals(contentType)) {
@@ -75,7 +74,6 @@ public class FileService {
   public UploadResponseDto save(UploadRequestDto dto) {
     String extension;
     String contentType = dto.getFile().getContentType();
-    // Apache Tika
     if ("image/jpeg".equals(contentType)) {
       extension = ".jpg";
     } else if ("image/png".equals(contentType)) {
@@ -84,7 +82,6 @@ public class FileService {
       throw new UnsupportedFileTypeException(contentType);
     }
 
-    // FIXME: for demo only - danger zone
     String name = dto.getName() + extension;
     try {
       dto.getFile().transferTo(Paths.get(uploadPath).resolve(name));

@@ -10,43 +10,31 @@ import ru.rosbank.javaschool.crudapi.service.PostService;
 
 import java.util.List;
 
-@RestController // ко всем методам будет дописано @ResponseBody
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/posts")
 public class RestPostController {
   private final PostService service;
   private final Logger logger = LoggerFactory.getLogger(RestPostController.class);
 
-  // @ResponseBody
-  // AutoConfiguration -> Jackson
-  // HttpMessageConverters -> RequestResponse...
-  @GetMapping // @RequestMapping(method = GET) -> GET /api/posts
+  @GetMapping
   public List<PostResponseDto> getAll() {
     logger.info(Thread.currentThread().getName());
     return service.getAll();
   }
 
-  // ТТП
-  @GetMapping(params = "q") // фильтрация по наличию параметра
+  @GetMapping(params = "q")
   public List<PostResponseDto> searchByContent(@RequestParam String q) {
     return service.searchByContent(q);
   }
 
-  // -> x-www-urlencoded...
-  // -> multipart/form-data
-  // Content-Type: MIME тип
-  // POST -> create/update
-  @PostMapping // DataBinding
+  @PostMapping
   public PostResponseDto save(@RequestBody PostSaveRequestDto dto) {
     return service.save(dto);
   }
 
-  // DELETE /api/posts/:id -> ?itemId=10 -> req.getParameter()
   @DeleteMapping("/{id}")
-// public void removeById(@PathVariable("id") int id)
-// if param name = path variable name, то дополнительно ничего не нужно
   public void removeById(@PathVariable int id) {
-//    throw new BadRequestException("bad.request");
     service.removeById(id);
   }
 

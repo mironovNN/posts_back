@@ -3,7 +3,7 @@ package ru.rosbank.javaschool.crudapi.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rosbank.javaschool.crudapi.model.PostModel;
+import ru.rosbank.javaschool.crudapi.entity.PostEntity;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +14,7 @@ public class PostResponseDto {
   private String media;
   private int likes;
 
-  public static PostResponseDto from(PostModel model) {
+  public static PostResponseDto from(PostEntity model) {
     return new PostResponseDto(
         model.getId(),
         model.getContent(),

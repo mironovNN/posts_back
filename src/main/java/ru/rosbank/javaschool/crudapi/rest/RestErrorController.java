@@ -31,28 +31,23 @@ public class RestErrorController extends AbstractErrorController {
     Throwable error = errorAttributes.getError(webRequest);
     int status = getStatus(request).value();
     String message = "error.unknown";
-    // null - норм
     if (error == null) {
-      // something bad happened
-      // Builder -> позволяет собирать сложные в несколько вызовов (без передачи всех параметров)
       return ResponseEntity.status(status).body(
           new ErrorResponseDto(status, message)
       );
     }
 
     if (error instanceof BadRequestException) {
-      status = 400; // TODO: move to constants
+      status = 400;
       message = "error.bad_request";
       return getErrorResponseDtoResponseEntity(error, status, message);
     }
     if (error instanceof UnsupportedFileTypeException) {
-      status = 400; // TODO: move to constants
+      status = 400;
       message = "error.bad_filetype";
       return getErrorResponseDtoResponseEntity(error, status, message);
     }
-    // TODO: what if this stuff throws exception
 
-    // catch all
     return getErrorResponseDtoResponseEntity(error, status, message);
   }
 
